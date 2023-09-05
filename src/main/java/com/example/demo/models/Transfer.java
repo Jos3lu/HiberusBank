@@ -1,5 +1,8 @@
 package com.example.demo.models;
 
+import com.example.demo.models.views.TransferView;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,20 +17,24 @@ public class Transfer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(TransferView.BasicData.class)
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "worker_id")
 	@NotNull(message = "Sender cannot be empty")
+	@JsonView(TransferView.WorkerData.class)
 	private Worker sender;
 	
 	@ManyToOne
 	@JoinColumn(name = "worker_id")
 	@NotNull(message = "Receiver cannot be empty")
+	@JsonView(TransferView.WorkerData.class)
 	private Worker receiver;
 	
 	@NotNull(message = "Amount cannot be empty")
 	@Positive(message = "The amount must be greater than 0")
+	@JsonView(TransferView.BasicData.class)
 	private double amount;
 	
 	public Transfer() {}

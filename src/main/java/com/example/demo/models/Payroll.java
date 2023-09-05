@@ -2,6 +2,9 @@ package com.example.demo.models;
 
 import java.time.LocalDateTime;
 
+import com.example.demo.models.views.PayrollView;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,13 +17,16 @@ public class Payroll {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@JsonView(PayrollView.BasicData.class)
 	private Long id;
 	
 	@NotNull(message = "Payment date cannot be empty")
+	@JsonView(PayrollView.BasicData.class)
 	private LocalDateTime paymentDate;
 	
 	@NotNull(message = "Net amount cannot be empty")
 	@Positive(message = "Net amount must be greater or equal to 0")
+	@JsonView(PayrollView.BasicData.class)
 	private Double netAmount;
 	
 	public Payroll() {}
