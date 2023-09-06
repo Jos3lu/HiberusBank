@@ -1,6 +1,6 @@
 package com.example.hiberusbank.models;
 
-import com.example.hiberusbank.models.views.TransferView;
+import com.example.hiberusbank.models.views.TransferViews;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Entity;
@@ -17,24 +17,24 @@ public class Transfer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(TransferView.BasicData.class)
+	@JsonView(TransferViews.BasicData.class)
 	private Long id;
 	
 	@ManyToOne
 	@JoinColumn(name = "worker_id")
 	@NotNull(message = "Sender cannot be empty")
-	@JsonView(TransferView.WorkerData.class)
+	@JsonView(TransferViews.WorkerData.class)
 	private Worker sender;
 	
 	@ManyToOne
 	@JoinColumn(name = "worker_id")
 	@NotNull(message = "Receiver cannot be empty")
-	@JsonView(TransferView.WorkerData.class)
+	@JsonView(TransferViews.WorkerData.class)
 	private Worker receiver;
 	
 	@NotNull(message = "Amount cannot be empty")
 	@Positive(message = "The amount must be greater than 0")
-	@JsonView(TransferView.BasicData.class)
+	@JsonView(TransferViews.BasicData.class)
 	private double amount;
 	
 	public Transfer() {}

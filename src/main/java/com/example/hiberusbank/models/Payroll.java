@@ -2,7 +2,7 @@ package com.example.hiberusbank.models;
 
 import java.time.LocalDateTime;
 
-import com.example.hiberusbank.models.views.PayrollView;
+import com.example.hiberusbank.models.views.PayrollViews;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Entity;
@@ -17,16 +17,16 @@ public class Payroll {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(PayrollView.BasicData.class)
+	@JsonView(PayrollViews.BasicData.class)
 	private Long id;
 	
 	@NotNull(message = "Payment date cannot be empty")
-	@JsonView(PayrollView.BasicData.class)
+	@JsonView(PayrollViews.BasicData.class)
 	private LocalDateTime paymentDate;
 	
 	@NotNull(message = "Net amount cannot be empty")
 	@Positive(message = "Net amount must be greater or equal to 0")
-	@JsonView(PayrollView.BasicData.class)
+	@JsonView(PayrollViews.BasicData.class)
 	private Double netAmount;
 	
 	public Payroll() {}

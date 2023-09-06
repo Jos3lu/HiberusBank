@@ -1,8 +1,8 @@
 package com.example.hiberusbank.models.views;
 
-public class PayrollView {
+public class PayrollViews {
 
-	private PayrollView() {}
+	private PayrollViews() {}
 	
 	public static interface BasicData {}
 	
