@@ -1,4 +1,4 @@
-package com.example.demo.models.dtos;
+package com.example.hiberusbank.models.dtos;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

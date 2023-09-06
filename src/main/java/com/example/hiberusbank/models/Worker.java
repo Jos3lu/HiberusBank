@@ -1,9 +1,9 @@
-package com.example.demo.models;
+package com.example.hiberusbank.models;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.models.views.WorkerView;
+import com.example.hiberusbank.models.views.WorkerView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.CascadeType;

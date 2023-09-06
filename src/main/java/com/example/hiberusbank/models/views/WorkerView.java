@@ -1,4 +1,4 @@
-package com.example.demo.models.views;
+package com.example.hiberusbank.models.views;
 
 public class WorkerView {
 

@@ -1,6 +1,6 @@
-package com.example.demo.models;
+package com.example.hiberusbank.models;
 
-import com.example.demo.models.views.TransferView;
+import com.example.hiberusbank.models.views.TransferView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Entity;

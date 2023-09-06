@@ -1,8 +1,8 @@
-package com.example.demo.models;
+package com.example.hiberusbank.models;
 
 import java.time.LocalDateTime;
 
-import com.example.demo.models.views.PayrollView;
+import com.example.hiberusbank.models.views.PayrollView;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Entity;
