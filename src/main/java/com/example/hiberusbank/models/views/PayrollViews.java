@@ -6,4 +6,8 @@ public class PayrollViews {
 	
 	public static interface BasicData {}
 	
+	public static interface WorkerData extends WorkerViews.BasicData {}
+	
+	public static interface PayrollData extends BasicData, WorkerData {}
+	
 }

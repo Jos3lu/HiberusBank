@@ -1,6 +1,7 @@
 package com.example.hiberusbank.models;
 
 import com.example.hiberusbank.models.views.TransferViews;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import jakarta.persistence.Entity;
@@ -21,13 +22,13 @@ public class Transfer {
 	private Long id;
 	
 	@ManyToOne
-	@JoinColumn(name = "worker_id")
+	@JoinColumn(name = "sender_id")
 	@NotNull(message = "Sender cannot be empty")
 	@JsonView(TransferViews.WorkerData.class)
 	private Worker sender;
 	
 	@ManyToOne
-	@JoinColumn(name = "worker_id")
+	@JoinColumn(name = "receiver_id")
 	@NotNull(message = "Receiver cannot be empty")
 	@JsonView(TransferViews.WorkerData.class)
 	private Worker receiver;
@@ -35,13 +36,16 @@ public class Transfer {
 	@NotNull(message = "Amount cannot be empty")
 	@Positive(message = "The amount must be greater than 0")
 	@JsonView(TransferViews.BasicData.class)
-	private double amount;
+	private Double amount;
+	
+	@JsonIgnore
+	private Boolean failed;
 	
 	public Transfer() {}
 		
 	public Transfer(@NotNull(message = "Sender cannot be empty") Worker sender,
 			@NotNull(message = "Receiver cannot be empty") Worker receiver,
-			@NotNull(message = "Amount cannot be empty") @Positive(message = "The amount must be greater than 0") double amount) {
+			@NotNull(message = "Amount cannot be empty") @Positive(message = "The amount must be greater than 0") Double amount) {
 		this.sender = sender;
 		this.receiver = receiver;
 		this.amount = amount;
@@ -71,12 +75,20 @@ public class Transfer {
 		this.receiver = receiver;
 	}
 
-	public double getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(double amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
+	}
+	
+	public Boolean getFailed() {
+		return failed;
+	}
+	
+	public void setFailed(Boolean failed) {
+		this.failed = failed;
 	}
 	
 }

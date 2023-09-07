@@ -11,7 +11,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -47,8 +46,7 @@ public class Worker {
 	@JsonView(WorkerViews.ExtendedData.class)
 	private Double balance;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-	@JoinColumn(name = "worker_id")
+	@OneToMany(mappedBy = "worker", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonView(WorkerViews.PayrollData.class)
 	private List<Payroll> payrolls = new ArrayList<>();
 	
@@ -59,6 +57,9 @@ public class Worker {
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonView(WorkerViews.TransferData.class)
 	private List<Transfer> transfersReceived = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<Transfer> transfersFailed = new ArrayList<>();
 	
 	public Worker() {}
 
@@ -135,6 +136,14 @@ public class Worker {
 
 	public void setTransfersReceived(List<Transfer> transfersReceived) {
 		this.transfersReceived = transfersReceived;
+	}
+	
+	public List<Transfer> getTransfersFailed() {
+		return transfersFailed;
+	}
+	
+	public void setTransfersFailed(List<Transfer> transfersFailed) {
+		this.transfersFailed = transfersFailed;
 	}
 	
 }

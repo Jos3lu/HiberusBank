@@ -1,5 +1,7 @@
 package com.example.hiberusbank.services;
 
+import java.util.List;
+
 import com.example.hiberusbank.models.Payroll;
 
 public interface PayrollService {
@@ -11,5 +13,12 @@ public interface PayrollService {
 	 * @return Payroll
 	 */
 	Payroll paySalary(Long workerId);
+
+	/**
+	 * Get salaries of all the workers
+	 * 
+	 * @return List<Payroll>
+	 */
+	List<Payroll> getPayrolls();
 
 }

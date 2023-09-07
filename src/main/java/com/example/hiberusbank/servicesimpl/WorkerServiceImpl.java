@@ -33,7 +33,7 @@ public class WorkerServiceImpl implements WorkerService {
 	public Worker raiseSalary(Long workerId, Double amount) {
 		Worker worker = this.getWorker(workerId);
 		worker.setGrossSalary(worker.getGrossSalary() + amount);
-		return workerRepository.save(worker);
+		return this.workerRepository.save(worker);
 	}
 	
 	@Override

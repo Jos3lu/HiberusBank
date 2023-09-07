@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
@@ -29,12 +31,21 @@ public class Payroll {
 	@JsonView(PayrollViews.BasicData.class)
 	private Double netAmount;
 	
+	@ManyToOne
+	@JoinColumn(name = "worker_id")
+	@NotNull(message = "Worker cannot be empty")
+	@JsonView(PayrollViews.WorkerData.class)
+	private Worker worker;
+	
 	public Payroll() {}
 
 	public Payroll(@NotNull(message = "Payment date cannot be empty") LocalDateTime paymentDate,
-			@NotNull(message = "Net amount cannot be empty") @Positive(message = "Net amount must be greater or equal to 0") Double netAmount) {
+			@NotNull(message = "Net amount cannot be empty") @Positive(message = "Net amount must be greater or equal to 0") Double netAmount,
+			@NotNull(message = "Worker cannot be empty") Worker worker) {
+		super();
 		this.paymentDate = paymentDate;
 		this.netAmount = netAmount;
+		this.worker = worker;
 	}
 
 	public Long getId() {
@@ -59,6 +70,14 @@ public class Payroll {
 
 	public void setNetAmount(Double netAmount) {
 		this.netAmount = netAmount;
+	}
+	
+	public Worker getWorker() {
+		return worker;
+	}
+	
+	public void setWorker(Worker worker) {
+		this.worker = worker;
 	}
 	
 }

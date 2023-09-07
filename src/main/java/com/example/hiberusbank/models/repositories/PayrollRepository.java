@@ -6,4 +6,5 @@ import com.example.hiberusbank.models.Payroll;
 
 public interface PayrollRepository extends JpaRepository<Payroll, Long> {
 
+	
 }
