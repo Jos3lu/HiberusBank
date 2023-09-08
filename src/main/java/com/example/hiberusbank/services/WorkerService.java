@@ -9,7 +9,7 @@ public interface WorkerService {
 	 * 
 	 * @param worker Worker information
 	 */
-	public void registerWorker(Worker worker);
+	public Worker registerWorker(Worker worker);
 
 	/**
 	 * Delete worker

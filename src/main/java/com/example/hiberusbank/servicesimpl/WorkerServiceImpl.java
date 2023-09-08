@@ -18,9 +18,9 @@ public class WorkerServiceImpl implements WorkerService {
 	}
 
 	@Override
-	public void registerWorker(Worker worker) {
+	public Worker registerWorker(Worker worker) {
 		// Users can have the same name and last name
-		this.workerRepository.save(worker);
+		return this.workerRepository.save(worker);
 	}
 	
 	@Override

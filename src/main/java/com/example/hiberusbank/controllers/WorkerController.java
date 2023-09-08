@@ -31,11 +31,10 @@ public class WorkerController {
 	}
 	
 	@PostMapping("/register")
-	public ResponseEntity<Void> registerWorker(@Valid @RequestBody WorkerDto workerDto) {
+	public ResponseEntity<Worker> registerWorker(@Valid @RequestBody WorkerDto workerDto) {
 		Worker worker = new Worker(workerDto.getName(), workerDto.getLastName(), 
 				workerDto.getGrossSalary(), 0.0);
-		this.workerService.registerWorker(worker);
-		return new ResponseEntity<>(HttpStatus.CREATED);
+		return new ResponseEntity<Worker>(this.workerService.registerWorker(worker), HttpStatus.CREATED);
 	}
 	
 	@GetMapping("/workers/{workerId}")
