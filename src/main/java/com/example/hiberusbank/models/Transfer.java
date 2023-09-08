@@ -18,7 +18,7 @@ public class Transfer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(TransferViews.BasicData.class)
+	@JsonView(TransferViews.ExtendedData.class)
 	private Long id;
 	
 	@ManyToOne

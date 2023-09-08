@@ -57,10 +57,7 @@ public class Worker {
 	@OneToMany(mappedBy = "receiver", cascade = CascadeType.ALL, orphanRemoval = true)
 	@JsonView(WorkerViews.TransferData.class)
 	private List<Transfer> transfersReceived = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "sender", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Transfer> transfersFailed = new ArrayList<>();
-	
+		
 	public Worker() {}
 
 	public Worker(
@@ -137,13 +134,5 @@ public class Worker {
 	public void setTransfersReceived(List<Transfer> transfersReceived) {
 		this.transfersReceived = transfersReceived;
 	}
-	
-	public List<Transfer> getTransfersFailed() {
-		return transfersFailed;
-	}
-	
-	public void setTransfersFailed(List<Transfer> transfersFailed) {
-		this.transfersFailed = transfersFailed;
-	}
-	
+		
 }

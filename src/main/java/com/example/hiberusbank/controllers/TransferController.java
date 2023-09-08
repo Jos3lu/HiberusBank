@@ -33,13 +33,13 @@ public class TransferController {
 	}
 	
 	@GetMapping("/transfers")
-	@JsonView(TransferViews.TransferData.class)
+	@JsonView(TransferViews.CompleteTransferData.class)
 	public ResponseEntity<List<Transfer>> getTransfers() {
 		return ResponseEntity.ok(this.transferService.getTransfers(false));
 	}
 	
 	@GetMapping("/failed-transfers")
-	@JsonView(TransferViews.TransferData.class)
+	@JsonView(TransferViews.CompleteTransferData.class)
 	public ResponseEntity<List<Transfer>> getFailedTransfers() {
 		return ResponseEntity.ok(this.transferService.getTransfers(true));
 	}

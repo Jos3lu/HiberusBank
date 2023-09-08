@@ -31,6 +31,7 @@ public class WorkerController {
 	}
 	
 	@PostMapping("/register")
+	@JsonView(WorkerViews.ExtendedData.class)
 	public ResponseEntity<Worker> registerWorker(@Valid @RequestBody WorkerDto workerDto) {
 		Worker worker = new Worker(workerDto.getName(), workerDto.getLastName(), 
 				workerDto.getGrossSalary(), 0.0);
@@ -40,7 +41,10 @@ public class WorkerController {
 	@GetMapping("/workers/{workerId}")
 	@JsonView(WorkerViews.WorkerData.class)
 	public ResponseEntity<Worker> getWorker(@PathVariable Long workerId) {
-		return ResponseEntity.ok(this.workerService.getWorker(workerId));
+		Worker worker = this.workerService.getWorker(workerId);
+		worker.getTransfersSent().removeIf(e -> e.getFailed());
+		worker.getTransfersReceived().removeIf(e -> e.getFailed());
+		return ResponseEntity.ok(worker);
 	}
 	
 	@PutMapping("/workers/{workerId}/raise-salary")

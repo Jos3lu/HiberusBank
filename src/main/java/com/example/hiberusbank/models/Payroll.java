@@ -19,7 +19,7 @@ public class Payroll {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@JsonView(PayrollViews.BasicData.class)
+	@JsonView(PayrollViews.ExtendedData.class)
 	private Long id;
 	
 	@NotNull(message = "Payment date cannot be empty")

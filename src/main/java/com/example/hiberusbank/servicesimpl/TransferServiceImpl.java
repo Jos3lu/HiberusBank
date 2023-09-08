@@ -2,7 +2,9 @@ package com.example.hiberusbank.servicesimpl;
 
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.example.hiberusbank.models.Transfer;
 import com.example.hiberusbank.models.Worker;
@@ -29,24 +31,29 @@ public class TransferServiceImpl implements TransferService {
 		Worker receiver = this.workerService.getWorker(receiverId);
 		
 		Transfer transfer = new Transfer(sender, receiver, amount);
-		if (this.isValidTransfer(sender, receiver, amount)) {
+		boolean isValidTransfer = this.isValidTransfer(sender, receiver, amount);
+		if (isValidTransfer) {
 			// Successful transfer
 			transfer.setFailed(false);
 			
 			// Decrease balance sender & add transfer
 			sender.setBalance(sender.getBalance() - amount);
-			sender.getTransfersSent().add(transfer);
 			
 			// Increase balance receiver & add transfer
 			receiver.setBalance(receiver.getBalance() + amount);
-			receiver.getTransfersReceived().add(transfer);
 			this.workerService.registerWorker(receiver);
 		} else {
 			// Transfer failed
 			transfer.setFailed(true);
-			sender.getTransfersFailed().add(transfer);
 		}
+		
+		// Add transfer to sender whether or not it failed
+		sender.getTransfersSent().add(transfer);
 		this.workerService.registerWorker(sender);
+		
+		if (!isValidTransfer) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Transaction failed");
+		}
 		
 		return transfer;
 	}

@@ -8,9 +8,9 @@ public class WorkerViews {
 	
 	public static interface ExtendedData extends BasicData {}
 	
-	public static interface PayrollData extends PayrollViews.BasicData {}
+	public static interface PayrollData extends PayrollViews.GeneralData {}
 	
-	public static interface TransferData extends TransferViews.BasicData {}
+	public static interface TransferData extends TransferViews.GeneralData {}
 	
 	public static interface WorkerData extends ExtendedData, PayrollData, TransferData {}
 	
