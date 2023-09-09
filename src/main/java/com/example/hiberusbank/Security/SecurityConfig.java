@@ -26,9 +26,8 @@ public class SecurityConfig {
 				.requestMatchers(mvcMatcherBuilder.pattern("/h2-console/**")).permitAll()
 				.anyRequest().permitAll());
 		
-		// For H2 Database console
 		http.csrf(csrf -> csrf.disable());
-		http.headers(authz -> authz.frameOptions(authz1 -> authz1.disable()));
+		//http.headers(authz -> authz.frameOptions(authz1 -> authz1.disable()));
 		
 		http.addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 	
