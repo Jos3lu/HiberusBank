@@ -36,10 +36,10 @@ public class TransferServiceImpl implements TransferService {
 			// Successful transfer
 			transfer.setFailed(false);
 			
-			// Decrease balance sender & add transfer
+			// Decrease balance sender
 			sender.setBalance(sender.getBalance() - amount);
 			
-			// Increase balance receiver & add transfer
+			// Increase balance receiver
 			receiver.setBalance(receiver.getBalance() + amount);
 			this.workerService.registerWorker(receiver);
 		} else {
