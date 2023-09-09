@@ -1,4 +1,4 @@
-package com.example.hiberusbank.servicetests;
+package com.example.hiberusbank.unittests;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.anyLong;
