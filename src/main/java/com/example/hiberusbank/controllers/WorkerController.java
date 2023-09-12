@@ -41,10 +41,8 @@ public class WorkerController {
 	@GetMapping("/workers/{workerId}")
 	@JsonView(WorkerViews.WorkerData.class)
 	public ResponseEntity<Worker> getWorker(@PathVariable Long workerId) {
-		Worker worker = this.workerService.getWorker(workerId);
-		worker.getTransfersSent().removeIf(e -> e.getFailed());
-		worker.getTransfersReceived().removeIf(e -> e.getFailed());
-		return ResponseEntity.ok(worker);
+		return ResponseEntity.ok(this.workerService.filterFailedTransfers(
+				this.workerService.getWorker(workerId)));
 	}
 	
 	@PutMapping("/workers/{workerId}/raise-salary")

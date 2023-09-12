@@ -42,4 +42,11 @@ public class WorkerServiceImpl implements WorkerService {
 		this.workerRepository.delete(worker);
 	}
 
+	@Override
+	public Worker filterFailedTransfers(Worker worker) {
+		worker.getTransfersSent().removeIf(e -> e.getFailed());
+		worker.getTransfersReceived().removeIf(e -> e.getFailed());
+		return worker;
+	}
+
 }

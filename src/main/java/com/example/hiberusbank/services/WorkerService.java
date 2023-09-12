@@ -35,4 +35,12 @@ public interface WorkerService {
 	 */
 	public Worker raiseSalary(Long workerId, Double amount);
 
+	/**
+	 * Filter failed transfers from worker
+	 * 
+	 * @param worker
+	 * @return
+	 */
+	public Worker filterFailedTransfers(Worker worker);
+
 }
