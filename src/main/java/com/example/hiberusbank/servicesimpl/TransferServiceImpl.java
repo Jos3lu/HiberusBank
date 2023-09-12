@@ -2,6 +2,7 @@ package com.example.hiberusbank.servicesimpl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,13 +18,11 @@ public class TransferServiceImpl implements TransferService {
 
 	private static final String FORBIDDEN_USER = "Antonio";
 	
-	private final TransferRepository transferRepository;
-	private final WorkerService workerService;
+	@Autowired
+	private TransferRepository transferRepository;
 	
-	public TransferServiceImpl(TransferRepository transferRepository, WorkerService workerService) {
-		this.transferRepository = transferRepository;
-		this.workerService = workerService;
-	}
+	@Autowired
+	private WorkerService workerService;
 
 	@Override
 	public Transfer sendTransfer(Long senderId, Long receiverId, Double amount) {

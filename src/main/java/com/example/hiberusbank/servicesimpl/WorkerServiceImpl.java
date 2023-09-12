@@ -1,5 +1,6 @@
 package com.example.hiberusbank.servicesimpl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -11,12 +12,9 @@ import com.example.hiberusbank.services.WorkerService;
 @Service
 public class WorkerServiceImpl implements WorkerService {
 	
-	private final WorkerRepository workerRepository;
+	@Autowired
+	private WorkerRepository workerRepository;
 	
-	public WorkerServiceImpl(WorkerRepository workerRepository) {
-		this.workerRepository = workerRepository;
-	}
-
 	@Override
 	public Worker registerWorker(Worker worker) {
 		// Users can have the same name and last name

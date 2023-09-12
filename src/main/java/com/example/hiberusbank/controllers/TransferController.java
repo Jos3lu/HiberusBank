@@ -2,6 +2,7 @@ package com.example.hiberusbank.controllers;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +20,8 @@ import com.fasterxml.jackson.annotation.JsonView;
 @RequestMapping("/api")
 public class TransferController {
 
-	private final TransferService transferService;
-	
-	public TransferController(TransferService transferService) {
-		this.transferService = transferService;
-	}
+	@Autowired
+	private TransferService transferService;
 	
 	@PostMapping("/workers/sender/{senderId}/receiver/{receiverId}/transfer")
 	@JsonView(TransferViews.TransferData.class)

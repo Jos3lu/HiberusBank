@@ -3,6 +3,7 @@ package com.example.hiberusbank.servicesimpl;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.hiberusbank.models.Payroll;
@@ -14,13 +15,11 @@ import com.example.hiberusbank.services.WorkerService;
 @Service
 public class PayrollServiceImpl implements PayrollService {
 
-	private final PayrollRepository payrollRepository;
-	private final WorkerService workerService;
+	@Autowired
+	private PayrollRepository payrollRepository;
 	
-	public PayrollServiceImpl(PayrollRepository payrollRepository, WorkerService workerService) {
-		this.payrollRepository = payrollRepository;
-		this.workerService = workerService;
-	}
+	@Autowired
+	private WorkerService workerService;
 
 	@Override
 	public Payroll paySalary(Long workerId) {

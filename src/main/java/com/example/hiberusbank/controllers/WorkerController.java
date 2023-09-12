@@ -1,5 +1,6 @@
 package com.example.hiberusbank.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,12 +25,9 @@ import jakarta.validation.Valid;
 @RequestMapping("/api")
 public class WorkerController {
 
-	private final WorkerService workerService;
-	
-	public WorkerController(WorkerService workerService) {
-		this.workerService = workerService;
-	}
-	
+	@Autowired
+	private WorkerService workerService;
+		
 	@PostMapping("/register")
 	@JsonView(WorkerViews.ExtendedData.class)
 	public ResponseEntity<Worker> registerWorker(@Valid @RequestBody WorkerDto workerDto) {
